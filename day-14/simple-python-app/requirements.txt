@@ -1,1 +1,31 @@
-flask
+version: 0.2
+
+#env:
+  
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+phases:
+  install:
+    runtime-versions:
+       python: 3.11
+  pre_build:
+    commands:
+       - pip install -r AWS-CodePipeline/requirments.txt
+       
+  build:
+    commands:
+       - cd AWS-CodePipeline
+       - echo "Building Docker Image"
+       - docker build -t "<>"
+       - docker push <>
+  post_build:
+     commands:
+       - echo "Build is Successfull"
+	   
+
+"$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest" 
+	   
+DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username
+      DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
+      DOCKER_REGISTRY_URL: /myapp/docker-credentials/url
